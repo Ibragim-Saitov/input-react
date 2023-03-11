@@ -1,40 +1,49 @@
 
 import { useState } from 'react';
-import './App.css';
+import Checkbox from './Checkbox.jsx';
 
-function App() {
+
+function App({handlerCheck}) {
+
 
   const [todos, setTodos] = useState([
     {
-      text: 'Html',
+      text: "Html",
       done: false
     }, 
     {
-      text: 'Scss',
-      done: false
+      text: "Scss",
     },
     {
-      text: 'React',
-      done: false
+      text: "React",
     },
-  ])
+    {
+      text: "Css",
+    }
 
-  const [text, setText] = useState('')
+  ]);
+
+  const [text, setText] = useState("")
 
   function handlerChange(e){
-    setText(e.target.value)
+    setText(e.target.value);
   }
   
+  const [check, setCheck] = useState(false);
+  function handlerChanges() {
+    setCheck(!check)
+  }
 
-
-  function handlerBtn(){
+  function handlerBtn(done) {
     setTodos([
       {
-        text: text
+        text: text,
+        done: check,
       },
-      ...todos
-    ])
-    setText('')
+      ...todos,
+    ]);
+    setText("");
+    setTodos(false);
   }
 
 
@@ -43,9 +52,10 @@ return (
     <div>
       <input type='text' value={text} onChange={handlerChange}/>
       <button onClick={handlerBtn}>add</button>
+      <Checkbox check={check} handlerChanges={handlerChanges}/>
     </div>
     {
-      todos.map((item, idx) =>{
+      todos.map((item, idx) => {
       return(
         <div>
       <li key={idx}>
@@ -53,7 +63,7 @@ return (
       </li>
       <input type='checkbox' checked={item.done}/>
       </div>
-      )
+      );
       })
     }
    </div>

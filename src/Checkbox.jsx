@@ -2,18 +2,19 @@ import { useState } from "react";
 
 function Checkbox() {
   
-    const [check, setChect] = useState(true)
+    const [check, setCheck] = useState(true)
 
-    function handlerChange() {
-        setChect(!check)
-        
+    function handlerCheck() {
+        setCheck(!check)
     }
 
 
   return(
-    <div>
-     <input type='checkbox' checked={check} onChange={handlerChange}/>
+    <div handlerCheck={handlerCheck}>
+     <input type='checkbox' checked={check} onChange={handlerCheck}/>
     </div>
   )  
 }
+
+
 export default Checkbox;
